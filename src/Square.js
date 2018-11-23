@@ -1,10 +1,11 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 function Square(props) {
     return (
-        <button className="square" onClick={() => props.onClick()}>
+        <Button variant="contained" color="black" className="square" onClick={() => props.onClick()}>
             {props.value}
-        </button>
+        </Button>
     );
 }
 

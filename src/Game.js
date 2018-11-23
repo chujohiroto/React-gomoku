@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from './Board';
+import Header from './header';
 
 class Game extends React.Component {
     constructor() {
@@ -60,18 +61,22 @@ class Game extends React.Component {
         });
 
         return (
-            <div className="game">
-                <div>
-                    <Board
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
+            <React.Fragment>
+                <Header title="五目並べ" />
+                <div className="game">
+                    <div>
+                        <Board
+                            squares={current.squares}
+                            onClick={(i) => this.handleClick(i)}
+                        />
+                    </div>
+                    <div className="game-info">
+                        <div>{status}</div>
+                        <ol>{moves}</ol>
+                    </div>
                 </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
-                </div>
-            </div>
+            </React.Fragment >
+
         );
     }
 }

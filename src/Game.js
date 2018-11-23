@@ -1,6 +1,8 @@
 import React from 'react';
 import Board from './Board';
 import Header from './header';
+import Button from '@material-ui/core/Button';
+
 
 class Game extends React.Component {
     constructor() {
@@ -50,13 +52,25 @@ class Game extends React.Component {
         }
 
         const moves = history.map((step, move) => {
-            const desc = move ?
-                'Move #' + move :
-                'Game start';
+
+            let desc = "";
+            if (move % 2 == 0) {
+                desc = move ?
+                    'Bのターン #' + move :
+                    'スタート！';
+            }
+            else {
+                desc = move ?
+                    'Aのターン #' + move :
+                    'スタート！';
+            }
             return (
-                <li key={move}>
+                <Button variant="contained" color="black" className="square" key={move}>
                     <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
-                </li>
+                </Button >
+                /*<li key={move}>
+                    <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+                </li>*/
             );
         });
 
@@ -64,12 +78,10 @@ class Game extends React.Component {
             <React.Fragment>
                 <Header title="五目並べ" />
                 <div className="game">
-                    <div>
-                        <Board
-                            squares={current.squares}
-                            onClick={(i) => this.handleClick(i)}
-                        />
-                    </div>
+                    <Board
+                        squares={current.squares}
+                        onClick={(i) => this.handleClick(i)}
+                    />
                     <div className="game-info">
                         <div>{status}</div>
                         <ol>{moves}</ol>
